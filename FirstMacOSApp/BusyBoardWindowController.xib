@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="BusyBoardWindowController" customModule="FirstMacOSApp" customModuleProvider="target">
+            <connections>
+                <outlet property="checkButton" destination="OId-Y5-ZQq" id="ZgU-wZ-T7y"/>
+                <outlet property="hideRadioButton" destination="kgC-xD-ebD" id="vzT-mJ-wRX"/>
+                <outlet property="horizontalDivider" destination="RLc-um-LCj" id="aSU-Yb-xwA"/>
+                <outlet property="resetControlButton" destination="J9z-z4-fFb" id="HeE-Wb-TOm"/>
+                <outlet property="revealButton" destination="yu5-k0-KZV" id="j8K-co-qFV"/>
+                <outlet property="revealTextView" destination="JAc-4c-ZIr" id="5tg-9G-lE6"/>
+                <outlet property="secretTextView" destination="oCE-mD-j78" id="APp-hn-uHc"/>
+                <outlet property="showRadioButton" destination="ozK-3z-Geh" id="n5c-wu-fIG"/>
+                <outlet property="slider" destination="EKL-kg-rqb" id="zNm-7p-VHh"/>
+                <outlet property="sliderValueLabel" destination="aYA-gO-ZFW" id="WLv-Bn-NVF"/>
+                <outlet property="verticalDivider" destination="7Rd-vc-a4q" id="XQi-gV-3Ha"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="BusyBoard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="792" height="514"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1352" height="843"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="773" height="514"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nu4-Yq-m9B" userLabel="parent stack">
+                        <rect key="frame" x="20" y="20" width="733" height="474"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="30" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalCompressionResistancePriority="749" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sdf-IG-SDc">
+                                <rect key="frame" x="0.0" y="0.0" width="350" height="474"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="bottom" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y5I-tX-Qnh">
+                                        <rect key="frame" x="0.0" y="50" width="350" height="424"/>
+                                        <subviews>
+                                            <slider horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EKL-kg-rqb">
+                                                <rect key="frame" x="-2" y="-6" width="24" height="408"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="400" id="eFc-dG-T0i"/>
+                                                </constraints>
+                                                <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="5Bk-ea-L95">
+                                                    <font key="font" metaFont="system" size="12"/>
+                                                </sliderCell>
+                                                <connections>
+                                                    <action selector="sliderAction:" target="-2" id="dBS-er-PPW"/>
+                                                </connections>
+                                            </slider>
+                                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IDE-gb-mzl">
+                                                <rect key="frame" x="40" y="0.0" width="310" height="88"/>
+                                                <subviews>
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aYA-gO-ZFW">
+                                                        <rect key="frame" x="-2" y="72" width="54" height="16"/>
+                                                        <textFieldCell key="cell" lineBreakMode="clipping" id="cpg-Go-WBJ">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="ozK-3z-Geh">
+                                                        <rect key="frame" x="-2" y="35" width="162" height="18"/>
+                                                        <buttonCell key="cell" type="radio" title="Show slider tick marks" bezelStyle="regularSquare" imagePosition="left" alignment="center" state="on" inset="2" id="5Dy-Kj-ckk">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="showRadioAction:" target="-2" id="rYl-FJ-E5O"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="kgC-xD-ebD">
+                                                        <rect key="frame" x="-2" y="-1" width="157" height="18"/>
+                                                        <buttonCell key="cell" type="radio" title="Hide slider tick marks" bezelStyle="regularSquare" imagePosition="left" inset="2" id="HvZ-AV-4jD">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="hideRadioAction:" target="-2" id="95e-Za-f3m"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J9z-z4-fFb">
+                                        <rect key="frame" x="-7" y="-7" width="124" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Reset Controls" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="7n5-4v-aTD">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="resetControlsAction:" target="-2" id="GHH-lM-eam"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Y5I-tX-Qnh" firstAttribute="width" secondItem="sdf-IG-SDc" secondAttribute="width" id="ykX-2A-xW0"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="7Rd-vc-a4q">
+                                <rect key="frame" x="366" y="0.0" width="1" height="474"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="WeX-Q1-5nG"/>
+                                </constraints>
+                            </customView>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="30" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jMi-TH-gVo">
+                                <rect key="frame" x="383" y="93" width="350" height="381"/>
+                                <subviews>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="OId-Y5-ZQq">
+                                        <rect key="frame" x="131" y="340" width="87" height="42"/>
+                                        <buttonCell key="cell" type="check" title="Check me" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Ufp-NZ-kA7">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="zyH-Wh-K11"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="checkAction:" target="-2" id="dzh-Zq-WCb"/>
+                                        </connections>
+                                    </button>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="RLc-um-LCj">
+                                        <rect key="frame" x="0.0" y="310" width="350" height="1"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="tnz-TI-IWi"/>
+                                        </constraints>
+                                    </customView>
+                                    <secureTextField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oCE-mD-j78">
+                                        <rect key="frame" x="55" y="180" width="240" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="64X-CO-BVi"/>
+                                            <constraint firstAttribute="width" constant="240" id="Crq-gl-7Nh"/>
+                                        </constraints>
+                                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="qRo-ok-gtX">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <allowedInputSourceLocales>
+                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                            </allowedInputSourceLocales>
+                                        </secureTextFieldCell>
+                                    </secureTextField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yu5-k0-KZV">
+                                        <rect key="frame" x="77" y="123" width="197" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Reveal the secret message" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Fv-AL-2Df">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="revealAction:" target="-2" id="X1g-ep-P7g"/>
+                                        </connections>
+                                    </button>
+                                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wg1-dr-Me6">
+                                        <rect key="frame" x="55" y="0.0" width="240" height="100"/>
+                                        <clipView key="contentView" drawsBackground="NO" id="E1q-GI-ybs">
+                                            <rect key="frame" x="0.0" y="0.0" width="225" height="100"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textView wantsLayer="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="JAc-4c-ZIr">
+                                                    <rect key="frame" x="0.0" y="0.0" width="225" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <size key="minSize" width="225" height="100"/>
+                                                    <size key="maxSize" width="225" height="10000000"/>
+                                                </textView>
+                                            </subviews>
+                                        </clipView>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="1Lt-fd-wRu"/>
+                                            <constraint firstAttribute="width" constant="240" id="TmM-HY-5I6"/>
+                                        </constraints>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="wzs-hu-FeZ">
+                                            <rect key="frame" x="-100" y="-100" width="225" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="Vt4-Yk-v3c">
+                                            <rect key="frame" x="225" y="0.0" width="15" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="RLc-um-LCj" firstAttribute="width" secondItem="jMi-TH-gVo" secondAttribute="width" id="F5Q-BL-Ic8"/>
+                                    <constraint firstAttribute="width" constant="350" id="G3W-3D-Vh3"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="7Rd-vc-a4q" firstAttribute="height" secondItem="sdf-IG-SDc" secondAttribute="height" id="7Hp-7o-fZn"/>
+                            <constraint firstItem="sdf-IG-SDc" firstAttribute="top" secondItem="Nu4-Yq-m9B" secondAttribute="top" id="Gud-GV-YHg"/>
+                            <constraint firstItem="jMi-TH-gVo" firstAttribute="top" secondItem="Nu4-Yq-m9B" secondAttribute="top" id="X7e-oJ-3Gf"/>
+                            <constraint firstItem="jMi-TH-gVo" firstAttribute="width" secondItem="sdf-IG-SDc" secondAttribute="width" id="iEz-3v-ADx"/>
+                        </constraints>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Nu4-Yq-m9B" firstAttribute="centerY" secondItem="se5-gp-TjO" secondAttribute="centerY" id="ORA-sB-d56"/>
+                    <constraint firstItem="Nu4-Yq-m9B" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="is6-SE-1ft"/>
+                    <constraint firstItem="Nu4-Yq-m9B" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="kZD-6i-BBB"/>
+                    <constraint firstItem="Nu4-Yq-m9B" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="pcN-mo-QFe"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="-307" y="127"/>
+        </window>
+    </objects>
+</document>

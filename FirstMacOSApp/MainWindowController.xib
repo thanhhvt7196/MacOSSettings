@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="FirstMacOSApp" customModuleProvider="target">
+            <connections>
+                <outlet property="generateButton" destination="7zh-a2-mjz" id="rcP-dQ-LBU"/>
+                <outlet property="textfield" destination="K4d-9n-oUO" id="dvD-OP-cjb"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Input" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1352" height="843"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K4d-9n-oUO">
+                        <rect key="frame" x="165" y="125" width="150" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="dox-ml-qxb"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="obV-Wz-E4m">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7zh-a2-mjz">
+                        <rect key="frame" x="164" y="78" width="152" height="32"/>
+                        <buttonCell key="cell" type="push" title="Generate password" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VXW-wA-1IW">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="K4d-9n-oUO" firstAttribute="centerY" secondItem="se5-gp-TjO" secondAttribute="centerY" id="LLf-hg-8aH"/>
+                    <constraint firstItem="K4d-9n-oUO" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="R6p-nG-pMq"/>
+                    <constraint firstItem="7zh-a2-mjz" firstAttribute="top" secondItem="K4d-9n-oUO" secondAttribute="bottom" constant="20" id="nMc-sK-5Pp"/>
+                    <constraint firstItem="7zh-a2-mjz" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="uSz-rR-sBh"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="-92" y="97"/>
+        </window>
+    </objects>
+</document>
