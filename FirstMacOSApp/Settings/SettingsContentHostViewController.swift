@@ -14,19 +14,19 @@ final class SettingsContentHostViewController: NSViewController {
     
     private lazy var navigationBar: ContentNavigationBar = {
         let navigationBar = ContentNavigationBar()
-        navigationBar.wantsLayer = true
         return navigationBar
     }()
     
     private lazy var contentView = NSView()
     
-    override func loadView() {
-        super.loadView()
-        let view = NSView()
-        view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.controlBackgroundColor.cgColor
-        self.view = view
-    }
+//    override func loadView() {
+//        super.loadView()
+//        let view = NSVisualEffectView()
+//        view.material = .underPageBackground
+//        view.blendingMode = .behindWindow
+//        view.state = .followsWindowActiveState
+//        self.view = view
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +50,9 @@ final class SettingsContentHostViewController: NSViewController {
             make.height.equalTo(44)
         }
         stackView.addArrangedSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+        }
     }
     
     func show(_ vc: NSViewController) {
@@ -69,6 +72,7 @@ final class SettingsContentHostViewController: NSViewController {
             make.edges.equalToSuperview()
         }
         currentVC = vc
+        vc.view.setContentHuggingPriority(.defaultLow, for: .vertical)
     }
     
     func replaceController(_ vc: NSViewController, previousVC: NSViewController) {
@@ -80,5 +84,6 @@ final class SettingsContentHostViewController: NSViewController {
         vc.view.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        vc.view.setContentHuggingPriority(.defaultLow, for: .vertical)
     }
 }

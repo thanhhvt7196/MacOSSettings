@@ -6,6 +6,7 @@
 //
 import Cocoa
 
+@MainActor
 protocol AccountFooterDelegate: AnyObject {
     func signoutAction()
     func helpAction()

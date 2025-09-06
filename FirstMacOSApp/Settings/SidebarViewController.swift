@@ -11,6 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
+@MainActor
 protocol SideBarViewControllerDelegate: AnyObject {
     func sideBar(_ vc: SidebarViewController, didSelectItem: SideBarNodeItemType)
 }
@@ -136,7 +137,9 @@ final class SidebarViewController: NSViewController {
     
     override func loadView() {
         super.loadView()
-        self.view = NSView()
+        let view = NSVisualEffectView()
+        view.material = .sidebar
+        self.view = view
         setupUI()
     }
     

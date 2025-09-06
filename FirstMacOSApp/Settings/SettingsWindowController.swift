@@ -50,7 +50,6 @@ final class SettingsWindowController: NSWindowController {
         window.isMovableByWindowBackground = true
         window.minSize.height = minWindowHeight
         window.collectionBehavior.remove(.fullScreenPrimary)
-        window.backgroundColor = .controlBackgroundColor
         
         let toolbar = NSToolbar(identifier: "MainToolbar")
         toolbar.showsBaselineSeparator = false

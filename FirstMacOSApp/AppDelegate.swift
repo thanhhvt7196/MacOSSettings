@@ -20,6 +20,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         mainWindowController?.showWindow(nil)
         mainWindowController?.window?.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
+        
+        Task(priority: .utility) {
+            await SoundServices.shared.loadData()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

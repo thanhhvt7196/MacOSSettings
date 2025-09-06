@@ -45,9 +45,10 @@ final class ContentNavigationBar: NSVisualEffectView {
     }
     
     private func commonInit() {
-        material = .sidebar
+        material = .titlebar
         blendingMode = .withinWindow
         state = .active
+        isEmphasized = true
         let stackView = NSStackView()
         stackView.orientation = .horizontal
         stackView.spacing = 8
@@ -69,6 +70,15 @@ final class ContentNavigationBar: NSVisualEffectView {
             make.verticalEdges.equalToSuperview()
             make.horizontalEdges.equalToSuperview().inset(16)
         }
+        
+//        let sep = NSVisualEffectView()
+//        sep.material = .
+//        sep.state = .followsWindowActiveState
+//        addSubview(sep)
+//        sep.snp.makeConstraints { make in
+//            make.height.equalTo(1)
+//            make.horizontalEdges.bottom.equalToSuperview()
+//        }
     }
     
     func setTitle(_ value: String?) {
