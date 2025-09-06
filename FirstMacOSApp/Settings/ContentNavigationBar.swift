@@ -8,7 +8,7 @@
 import Foundation
 import Cocoa
 
-final class ContentNavigationBar: NSVisualEffectView {
+final class ContentNavigationBar: NSView {
     private lazy var titleLabel: NSTextField = {
         let label = NSTextField()
         label.isSelectable = false
@@ -45,10 +45,8 @@ final class ContentNavigationBar: NSVisualEffectView {
     }
     
     private func commonInit() {
-        material = .titlebar
-        blendingMode = .withinWindow
-        state = .active
-        isEmphasized = true
+        wantsLayer = true
+        layer?.backgroundColor = NSColor.underPageBackgroundColor.cgColor
         let stackView = NSStackView()
         stackView.orientation = .horizontal
         stackView.spacing = 8

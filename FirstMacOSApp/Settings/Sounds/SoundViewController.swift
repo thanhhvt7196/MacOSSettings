@@ -3,7 +3,7 @@ import Cocoa
 
 final class SoundViewController: NSViewController {
     private lazy var soundEffectsSectionView = SoundEffectsSectionView()
-    
+
     private lazy var docView: FlippedView = {
         let docView = FlippedView()
         return docView
