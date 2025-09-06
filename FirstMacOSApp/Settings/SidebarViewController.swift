@@ -11,69 +11,84 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
+protocol SideBarViewControllerDelegate: AnyObject {
+    func sideBar(_ vc: SidebarViewController, didSelectItem: SideBarNodeItemType)
+}
+
 final class SidebarViewController: NSViewController {
+    weak var delegate: SideBarViewControllerDelegate?
+    
+    var selectedItem: SideBarNodeItemType? {
+        return (outlineView.item(atRow: outlineView.selectedRow) as? SideBarNode)?.type
+    }
+    
     private let notes = [
         .account,
         SideBarNode(
             title: "Connectivity",
             children: [
-                SideBarNode(title: "Wifi", symbolName: "wifi.square.fill"),
-                SideBarNode(title: "Bluetooth", symbolName: "bolt.horizontal"),
-                SideBarNode(title: "Network", symbolName: "network"),
-                SideBarNode(title: "Battery", symbolName: "battery.100")
+                SideBarNode(title: "Wifi", symbolName: "wifi.square.fill", type: .wifi),
+                SideBarNode(title: "Bluetooth", symbolName: "bolt.horizontal", type: .bluetooth),
+                SideBarNode(title: "Network", symbolName: "network", type: .network),
+                SideBarNode(title: "Battery", symbolName: "battery.100", type: .battery)
             ],
-            isGroup: true
+            isGroup: true,
+            type: nil
         ),
         SideBarNode(
             title: "System",
             children: [
-                SideBarNode(title: "General", symbolName: "gearshape"),
-                SideBarNode(title: "Accessibility", symbolName: "figure.wave"),
-                SideBarNode(title: "Appearance", symbolName: "paintbrush"),
-                SideBarNode(title: "Apple Intelligence & Siri", symbolName: "sparkles"),
-                SideBarNode(title: "Control Center", symbolName: "switch.2"),
-                SideBarNode(title: "Desktop & Dock", symbolName: "dock.rectangle"),
-                SideBarNode(title: "Displays", symbolName: "display"),
-                SideBarNode(title: "Screen Saver", symbolName: "photo.on.rectangle"),
-                SideBarNode(title: "Spotlight", symbolName: "magnifyingglass"),
-                SideBarNode(title: "Wallpaper", symbolName: "photo"),
-                SideBarNode(title: "Notifications", symbolName: "bell.badge"),
-                SideBarNode(title: "Sound", symbolName: "speaker.wave.2"),
-                SideBarNode(title: "Focus", symbolName: "moon")
+                SideBarNode(title: "General", symbolName: "gearshape", type: .general),
+                SideBarNode(title: "Accessibility", symbolName: "figure.wave", type: .accessibility),
+                SideBarNode(title: "Appearance", symbolName: "paintbrush", type: .appearance),
+                SideBarNode(title: "Apple Intelligence & Siri", symbolName: "sparkles", type: .appleIntelligence),
+                SideBarNode(title: "Control Center", symbolName: "switch.2", type: .controlCenter),
+                SideBarNode(title: "Desktop & Dock", symbolName: "dock.rectangle", type: .desktopDock),
+                SideBarNode(title: "Displays", symbolName: "display", type: .displays),
+                SideBarNode(title: "Screen Saver", symbolName: "photo.on.rectangle", type: .screenSaver),
+                SideBarNode(title: "Spotlight", symbolName: "magnifyingglass", type: .spotlight),
+                SideBarNode(title: "Wallpaper", symbolName: "photo", type: .wallpaper),
+                SideBarNode(title: "Notifications", symbolName: "bell.badge", type: .notifications),
+                SideBarNode(title: "Sound", symbolName: "speaker.wave.2", type: .sound),
+                SideBarNode(title: "Focus", symbolName: "moon", type: .focus)
             ],
-            isGroup: true
+            isGroup: true,
+            type: nil
         ),
         
         SideBarNode(
             title: "Security",
             children: [
-                SideBarNode(title: "Lock Screen", symbolName: "lock"),
-                SideBarNode(title: "Privacy & Security", symbolName: "hand.raised"),
-                SideBarNode(title: "Touch ID & Password", symbolName: "touchid"),
-                SideBarNode(title: "Users & Groups", symbolName: "person.2")
+                SideBarNode(title: "Lock Screen", symbolName: "lock", type: .lockScreen),
+                SideBarNode(title: "Privacy & Security", symbolName: "hand.raised", type: .privacy),
+                SideBarNode(title: "Touch ID & Password", symbolName: "touchid", type: .touchId),
+                SideBarNode(title: "Users & Groups", symbolName: "person.2", type: .userGroup)
             ],
-            isGroup: true
+            isGroup: true,
+            type: nil
         ),
         
         SideBarNode(
             title: "Services",
             children: [
-                SideBarNode(title: "Internet Accounts", symbolName: "at"),
-                SideBarNode(title: "Game Center", symbolName: "gamecontroller"),
-                SideBarNode(title: "iCloud", symbolName: "icloud"),
-                SideBarNode(title: "Wallet & Apple Pay", symbolName: "creditcard")
+                SideBarNode(title: "Internet Accounts", symbolName: "at", type: .internetAccount),
+                SideBarNode(title: "Game Center", symbolName: "gamecontroller", type: .gameCenter),
+                SideBarNode(title: "iCloud", symbolName: "icloud", type: .icloud),
+                SideBarNode(title: "Wallet & Apple Pay", symbolName: "creditcard", type: .wallet)
             ],
-            isGroup: true
+            isGroup: true,
+            type: nil
         ),
         
         SideBarNode(
             title: "Input",
             children: [
-                SideBarNode(title: "Keyboard", symbolName: "keyboard"),
-                SideBarNode(title: "Trackpad", symbolName: "rectangle.and.hand.point.up.left"),
-                SideBarNode(title: "Printers & Scanners", symbolName: "printer")
+                SideBarNode(title: "Keyboard", symbolName: "keyboard", type: .keyboard),
+                SideBarNode(title: "Trackpad", symbolName: "rectangle.and.hand.point.up.left", type: .trackpad),
+                SideBarNode(title: "Printers & Scanners", symbolName: "printer", type: .printers)
             ],
-            isGroup: true
+            isGroup: true,
+            type: nil
         )
     ]
     
@@ -122,9 +137,6 @@ final class SidebarViewController: NSViewController {
     override func loadView() {
         super.loadView()
         self.view = NSView()
-        view.snp.makeConstraints { make in
-            make.width.equalTo(220)
-        }
         setupUI()
     }
     
@@ -156,11 +168,8 @@ final class SidebarViewController: NSViewController {
             isFirstLaunch = false
             layoutSubviews()
             outlineView.expandItem(nil, expandChildren: true)
-            if let firstLeaf = firstSelectableNode() {
-                let row = outlineView.row(forItem: firstLeaf)
-                if row >= 0 {
-                    outlineView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
-                }
+            if let firstLeaf = firstSelectableNode(), outlineView.row(forItem: firstLeaf) >= 0 {
+                outlineView.selectRowIndexes(IndexSet(integer: outlineView.row(forItem: firstLeaf)), byExtendingSelection: false)
             }
         }
     }
@@ -168,7 +177,7 @@ final class SidebarViewController: NSViewController {
     private func firstSelectableNode() -> SideBarNode? {
         for note in notes {
             if !note.isGroup { return note }
-            if let child = note.children.first {
+            if let child = note.children.first, child.type != nil {
                 return child
             }
         }
@@ -264,8 +273,9 @@ extension SidebarViewController: NSOutlineViewDelegate {
         guard let outlineView = notification.object as? NSOutlineView else {
             return
         }
-        guard outlineView.selectedRow >= 0, let node = outlineView.item(atRow: outlineView.selectedRow) as? SideBarNode else {
+        guard outlineView.selectedRow >= 0, let node = outlineView.item(atRow: outlineView.selectedRow) as? SideBarNode, let type = node.type else {
             return
         }
+        delegate?.sideBar(self, didSelectItem: type)
     }
 }
