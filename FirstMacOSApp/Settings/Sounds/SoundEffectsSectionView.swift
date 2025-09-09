@@ -10,6 +10,7 @@ import Cocoa
 final class SoundEffectsSectionView: NSView {
     private lazy var alertView = SoundEffectsAlertView()
     private lazy var outputView = SoundEffectOutputView()
+    private lazy var alertVolumeView = SoundEffectAlertVolumeView()
 
     private lazy var titleLabel: NSTextField = {
         let label = NSTextField(labelWithString: "Sound Effects")
@@ -63,6 +64,11 @@ final class SoundEffectsSectionView: NSView {
         addDivider()
         stackView.addArrangedSubview(outputView)
         outputView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+        }
+        addDivider()
+        stackView.addArrangedSubview(alertVolumeView)
+        alertVolumeView.snp.makeConstraints { make in
             make.width.equalToSuperview()
         }
     }

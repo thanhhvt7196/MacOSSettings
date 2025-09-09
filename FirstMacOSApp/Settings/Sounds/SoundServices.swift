@@ -15,6 +15,7 @@ actor SoundServices {
     static let shared = SoundServices()
     
     private let kBeepKey = "com.apple.sound.beep.sound"
+    private let kBeepVolumeKey = "com.apple.sound.beep.volume"
     
     private init() {
         
@@ -37,10 +38,10 @@ actor SoundServices {
         let directory = URL(filePath: "/System/Library/Sounds", directoryHint: .isDirectory, relativeTo: nil)
         
         let urls = (try? FileManager.default.contentsOfDirectory(
-                at: directory,
-                includingPropertiesForKeys: nil,
-                options: [.skipsHiddenFiles]
-            )) ?? []
+            at: directory,
+            includingPropertiesForKeys: nil,
+            options: [.skipsHiddenFiles]
+        )) ?? []
         
         var items: [AlertSound] = []
         
@@ -60,11 +61,11 @@ actor SoundServices {
               let plist = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil),
               let root = plist as? [String: Any]
         else { return [:] }
-
+        
         let langs = preferredLang.map { [$0] } ?? Locale.preferredLanguages.map {
             $0.split(separator: "-").first.map(String.init) ?? $0
         } + ["en"]
-
+        
         for lang in langs {
             if let dict = root[lang] as? [String:String] { return dict }
         }
@@ -77,7 +78,7 @@ actor SoundServices {
         }
         
         print("url 1 = \(url)")
-
+        
         guard let name = URL(string: url)?.deletingPathExtension().lastPathComponent, let fileName = soundNameMaps[name] else {
             return nil
         }
@@ -190,10 +191,10 @@ actor SoundServices {
             mScope: scope,
             mElement: kAudioObjectPropertyElementMain
         )
-
+        
         var ref: Unmanaged<CFString>?
         var size = UInt32(MemoryLayout<Unmanaged<CFString>?>.size)
-
+        
         let status = withUnsafeMutablePointer(to: &ref) { ptr in
             AudioObjectGetPropertyData(id, &addr, 0, nil, &size, ptr)
         }
@@ -212,7 +213,7 @@ actor SoundServices {
         _ = AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &addr, 0, nil, &size, &id)
         return id
     }
-
+    
     private func getDefaultOutputId() -> AudioObjectID {
         audioID(for: kAudioHardwarePropertyDefaultOutputDevice)
     }
@@ -230,5 +231,24 @@ actor SoundServices {
         } else {
             return stringProperty(systemOutput, selector: kAudioObjectPropertyName) ?? SoundServices.unknownOutputName
         }
+    }
+    
+    func getAlertVolume() -> Double {
+//        func read(host: CFString) -> Double? {
+//            if let n = CFPreferencesCopyValue(
+//                kBeepVolumeKey as CFString,
+//                kCFPreferencesAnyApplication,
+//                kCFPreferencesCurrentUser,
+//                host
+//            ) as? NSNumber {
+//                return n.doubleValue
+//            }
+//            return nil
+//        }
+//
+//        let v = read(host: kCFPreferencesCurrentHost) ?? read(host: kCFPreferencesAnyHost)
+//        return min(1, max(0, v ?? 0.5))
+        let value = UserDefaults.standard.float(forKey: kBeepVolumeKey)
+        return Double(value)
     }
 }
